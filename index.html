@@ -297,6 +297,155 @@
     .header-meta { gap: 16px; }
     .tab-btn { padding: 12px 12px 10px; font-size: 12px; }
   }
+
+  /* ── USER TESTING SECTION ── */
+  .ut-header { margin-bottom: 28px; }
+  .ut-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--text-tertiary); margin-bottom: 6px;
+  }
+  .ut-title { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+  .ut-meta { font-size: 13px; color: var(--text-tertiary); font-family: 'DM Mono', monospace; }
+
+  .ut-persona {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .ut-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #EEEDFE; border: 0.5px solid #AFA9EC;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 500; color: #534AB7;
+    flex-shrink: 0;
+  }
+  .ut-persona-info { flex: 1; }
+  .ut-persona-name { font-size: 15px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .ut-persona-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .ut-persona-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+  .ut-task-block {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .ut-task-head {
+    padding: 14px 20px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer; user-select: none;
+  }
+  .ut-task-head:hover { background: #FAFAF8; }
+  .ut-task-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+    background: var(--text-primary); color: #fff; flex-shrink: 0;
+  }
+  .ut-task-title { font-size: 14px; font-weight: 500; color: var(--text-primary); flex: 1; }
+  .ut-task-chevron { font-size: 12px; color: var(--text-tertiary); transition: transform .2s; }
+  .ut-task-block.open .ut-task-chevron { transform: rotate(180deg); }
+  .ut-task-body { display: none; padding: 0 20px 20px; }
+  .ut-task-block.open .ut-task-body { display: block; }
+
+  .ut-think-aloud {
+    background: #FAFAF8; border-radius: var(--radius-md);
+    border: 0.5px solid var(--border);
+    padding: 14px 16px; margin: 14px 0 12px;
+  }
+  .ut-think-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: 10px;
+  }
+  .ut-think-step {
+    display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;
+  }
+  .ut-think-step:last-child { margin-bottom: 0; }
+  .ut-step-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500; color: var(--text-tertiary);
+    white-space: nowrap; padding-top: 1px; min-width: 70px;
+  }
+  .ut-step-text { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+  .ut-step-text em { font-style: italic; color: var(--text-primary); }
+
+  .ut-quote {
+    border-left: 3px solid #D3D1C7;
+    padding: 8px 14px; margin: 10px 0;
+    font-size: 13px; font-style: italic;
+    color: var(--text-secondary); line-height: 1.65;
+  }
+
+  .seq-row {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px; margin-top: 14px;
+  }
+  .seq-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--text-tertiary); white-space: nowrap;
+  }
+  .seq-score-wrap { display: flex; gap: 4px; align-items: center; }
+  .seq-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #F1EFE8; border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .seq-dot.active-low  { background: var(--high-bg); color: var(--high-text); border-color: transparent; font-weight: 500; }
+  .seq-dot.active-mod  { background: var(--mod-bg);  color: var(--mod-text);  border-color: transparent; font-weight: 500; }
+  .seq-dot.active-high { background: var(--low-bg);  color: var(--low-text);  border-color: transparent; font-weight: 500; }
+  .seq-reason { font-size: 13px; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+
+  .ut-insight {
+    background: #EEEDFE; border-radius: var(--radius-md);
+    padding: 10px 14px; margin-top: 12px;
+    border-left: 3px solid #7F77DD;
+  }
+  .ut-insight-label {
+    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: #534AB7; margin-bottom: 4px;
+  }
+  .ut-insight-text { font-size: 13px; color: #3C3489; line-height: 1.6; }
+
+  .ut-compare-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 10px; margin: 16px 0;
+  }
+  .ut-compare-card {
+    background: var(--bg); border-radius: var(--radius-md); padding: 12px 14px;
+    border: 0.5px solid var(--border);
+  }
+  .ut-compare-task { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+  .ut-compare-seq { font-size: 26px; font-weight: 500; font-family: 'DM Mono', monospace; margin-bottom: 2px; }
+  .ut-compare-seq.seq-6 { color: var(--low-text); }
+  .ut-compare-seq.seq-4 { color: var(--mod-text); }
+  .ut-compare-seq.seq-2 { color: var(--high-text); }
+  .ut-compare-label { font-size: 11px; color: var(--text-tertiary); }
+  .ut-compare-quote { font-size: 12px; font-style: italic; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; border-top: 0.5px solid var(--border); padding-top: 8px; }
+
+  .ut-delta {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .ut-delta-item {
+    background: var(--surface); border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); padding: 10px 14px; flex: 1; min-width: 180px;
+  }
+  .ut-delta-head { font-size: 11px; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em; font-family: 'DM Mono', monospace; margin-bottom: 4px; }
+  .ut-delta-val { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .ut-delta-val span { font-weight: 500; }
 </style>
 </head>
 <body>
@@ -333,6 +482,7 @@
     <button class="tab-btn" onclick="showTask('t2')">Task 2 — Payment &amp; Tip</button>
     <button class="tab-btn" onclick="showTask('t3')">Task 3 — Customer Support</button>
     <button class="tab-btn" onclick="showTask('summary')">Summary</button>
+    <button class="tab-btn" onclick="showTask('usertesting')">User Testing</button>
   </div>
 </nav>
 
@@ -1000,6 +1150,230 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════ USER TESTING ════════════════════════════════ -->
+<section id="usertesting" class="task-section">
+
+  <div class="ut-header">
+    <p class="ut-kicker">AI-Simulated Think-Aloud · SEQ Rating · Gemini Thinking · March 19 2026</p>
+    <h2 class="ut-title">User Testing Session — Alex</h2>
+    <p class="ut-meta">3 tasks · SEQ scores recorded · Gemini (Thinking) used as participant proxy</p>
+  </div>
+
+  <!-- Persona card -->
+  <div class="ut-persona">
+    <div class="ut-avatar">AX</div>
+    <div class="ut-persona-info">
+      <p class="ut-persona-name">Alex — Simulated Participant</p>
+      <p class="ut-persona-desc">A time-pressured professional with approximately 40 minutes remaining on a lunch break at the start of the session. Motivated by speed and efficiency — wants to complete tasks quickly without distractions. Familiar with food delivery apps but not a power user.</p>
+      <div class="ut-persona-tags">
+        <span class="tag tag-heuristic">Time-pressured</span>
+        <span class="tag tag-heuristic">Efficiency-focused</span>
+        <span class="tag tag-heuristic">Moderate app familiarity</span>
+        <span class="tag tag-error">Low tolerance for friction</span>
+        <span class="tag tag-error">Frustrated by automation barriers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEQ Overview -->
+  <p class="section-heading">SEQ Scores at a glance</p>
+  <div class="ut-compare-grid">
+    <div class="ut-compare-card">
+      <p class="ut-compare-task">Task 1 — Search &amp; Add</p>
+      <p class="ut-compare-seq seq-6">6 / 7</p>
+      <p class="ut-compare-label">Very Easy</p>
+      <p class="ut-compare-quote">"Very straightforward — BOGO was clearly labeled, though the required customisation felt like a tiny speed bump."</p>
+    </div>
+    <div class="ut-compare-card">
+      <p class="ut-compare-task">Task 2 — Payment &amp; Tip</p>
+      <p class="ut-compare-seq seq-4">4 / 7</p>
+      <p class="ut-compare-label">Slightly Difficult</p>
+      <p class="ut-compare-quote">"Navigating through an upsell page and a separate tipping flow felt tedious when watching the clock."</p>
+    </div>
+    <div class="ut-compare-card">
+      <p class="ut-compare-task">Task 3 — Customer Support</p>
+      <p class="ut-compare-seq seq-2">2 / 7</p>
+      <p class="ut-compare-label">Extremely Difficult</p>
+      <p class="ut-compare-quote">"The app hides direct contact behind layers of automated menus and AI chatbots — the last thing I want in a hurry."</p>
+    </div>
+  </div>
+
+  <!-- Task 1 Think-Aloud -->
+  <div class="ut-task-block open" id="ut-t1">
+    <div class="ut-task-head" onclick="toggleUT('ut-t1')">
+      <span class="ut-task-badge">Task 1</span>
+      <span class="ut-task-title">Search for "Sandwich", pick a combo, handle promo pop-ups, proceed to cart</span>
+      <span class="ut-task-chevron">▼</span>
+    </div>
+    <div class="ut-task-body">
+      <div class="ut-think-aloud">
+        <p class="ut-think-label">Think-aloud transcript</p>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Searching</span>
+          <span class="ut-step-text">I'm on the home screen and I see a 'Sandwich' category icon, but I'll just hit the search bar at the top to see all my options. I'm typing in 'sandwich'.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Filtering</span>
+          <span class="ut-step-text">The results are up. I see <em>'Williams Fresh Cafe'</em> right at the top — it has a 'Buy 1, get 1 free' offer and a 22-minute delivery time. That's perfect; I can have the second one for lunch tomorrow. I'm tapping on that.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Choosing</span>
+          <span class="ut-step-text">I see the <em>'Egg, BACON, Spinach &amp; Avocado Bagel'</em> under the BOGO deal. I'm tapping the '+' to add it.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Customising</span>
+          <span class="ut-step-text">Now it's asking for 'Choices - Bagel'. It says 'Required', so I can't skip this. I'll go with <em>'BGL Everything'</em>. I don't need extra cheese right now, so I'll just move on.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Cart review</span>
+          <span class="ut-step-text">I'm clicking <em>'Add 2'</em> — since it's a BOGO, it shows two items for the price of one, $18.00 total but with $9.00 in savings. I see the 'Saving $9 with promotions' banner at the bottom.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Checkout</span>
+          <span class="ut-step-text">Everything looks right in the cart. I'm hitting <em>'Go to checkout'</em> so I can actually eat before my next meeting.</span>
+        </div>
+      </div>
+
+      <div class="seq-row">
+        <span class="seq-label">SEQ Score</span>
+        <div class="seq-score-wrap">
+          <div class="seq-dot">1</div><div class="seq-dot">2</div><div class="seq-dot">3</div>
+          <div class="seq-dot">4</div><div class="seq-dot">5</div>
+          <div class="seq-dot active-high">6</div>
+          <div class="seq-dot">7</div>
+        </div>
+        <span class="seq-reason">The process was very straightforward because the BOGO offer was clearly labeled, though having to fill out the 'Required' customisation fields felt like a tiny speed bump when in a rush.</span>
+      </div>
+
+      <div class="ut-insight">
+        <p class="ut-insight-label">Researcher note — PURE vs SEQ alignment</p>
+        <p class="ut-insight-text">Alex's SEQ of 6 aligns with the PURE evaluation's finding of consistent moderate (PURE 2) friction — no catastrophic failure, but multiple micro-frictions. Notably, Alex independently noticed the abbreviated label "BGL Everything" as a friction point, corroborating the PURE Step 4 finding. Alex also navigated the pre-set quantity of 2 without objection, suggesting the BOGO framing was legible enough for a motivated, time-pressured user — but may be more problematic for less engaged users.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task 2 Think-Aloud -->
+  <div class="ut-task-block" id="ut-t2">
+    <div class="ut-task-head" onclick="toggleUT('ut-t2')">
+      <span class="ut-task-badge">Task 2</span>
+      <span class="ut-task-title">Change payment method, set a custom tip, and check the total price</span>
+      <span class="ut-task-chevron">▼</span>
+    </div>
+    <div class="ut-task-body">
+      <div class="ut-think-aloud">
+        <p class="ut-think-label">Think-aloud transcript</p>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Upsell</span>
+          <span class="ut-step-text">I'm hitting 'Go to checkout', and now it's showing me a <em>'Complete your order'</em> page with cookies and coffee. I don't have time for extras; I just want my sandwich. Tapping <em>'No thanks'</em> at the bottom immediately.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Summary</span>
+          <span class="ut-step-text">Now I'm on the main checkout screen. I see the total is <em>$17.51</em>. The math seems right: $18.00 subtotal minus the $9.00 promotion, plus fees and taxes.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Payment</span>
+          <span class="ut-step-text">I see it's set to Apple Pay. I want to double-check my payment options, so I tap that. It opens the 'Pay with' menu. It looks like I'm sticking with Apple Pay, but <em>finding where to tap to change it took a second</em> because the 'Add payment method' is further down.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Tip discovery</span>
+          <span class="ut-step-text">Now for the tip. I tap to 'Add a tip'. Wait — it says tips are based on the order total <em>before discounts — $26.51</em>? That's a bit annoying when my actual total is much lower. 18% is selected by default, but I'll go with a custom amount.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Custom tip</span>
+          <span class="ut-step-text">I'm tapping 'Custom' and typing in '$4'. I hit <em>'Save'</em>.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Final review</span>
+          <span class="ut-step-text">Back on the tip screen, it shows <em>'Your tip: $4.00'</em>. The 'Place order' button is right there. This whole payment and tipping part took way longer than just picking the food. I'm ready to just hit place order and be done with it.</span>
+        </div>
+      </div>
+
+      <div class="seq-row">
+        <span class="seq-label">SEQ Score</span>
+        <div class="seq-score-wrap">
+          <div class="seq-dot">1</div><div class="seq-dot">2</div><div class="seq-dot">3</div>
+          <div class="seq-dot active-mod">4</div>
+          <div class="seq-dot">5</div><div class="seq-dot">6</div><div class="seq-dot">7</div>
+        </div>
+        <span class="seq-reason">While the screens are clear, having to navigate through an upsell page and then a separate tipping flow felt tedious when watching the clock.</span>
+      </div>
+
+      <div class="ut-insight">
+        <p class="ut-insight-label">Researcher note — PURE vs SEQ alignment</p>
+        <p class="ut-insight-text">Alex's SEQ of 4 is consistent with the PURE evaluation's finding of a single PURE 3 step (Step 7) dragging down an otherwise moderate-friction task. Two key PURE findings were directly echoed in the think-aloud: (1) the tip base calculated on the pre-discount total ($26.51 vs $17.51) caused visible confusion — Alex called it "a bit annoying", validating the H1 violation; (2) the difficulty locating the payment change affordance confirms the H6 / discoverability finding from PURE Step 4. Critically, Alex never received a confirmed all-in total before placing the order, exactly as predicted by the PURE Step 7 analysis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task 3 Think-Aloud -->
+  <div class="ut-task-block" id="ut-t3">
+    <div class="ut-task-head" onclick="toggleUT('ut-t3')">
+      <span class="ut-task-badge">Task 3</span>
+      <span class="ut-task-title">Find customer service for the last order and locate a phone number</span>
+      <span class="ut-task-chevron">▼</span>
+    </div>
+    <div class="ut-task-body">
+      <div class="ut-think-aloud">
+        <p class="ut-think-label">Think-aloud transcript</p>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Finding help</span>
+          <span class="ut-step-text">I'm on the main account page and I see 'Help' right there, so I'm tapping that to get started.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Locating order</span>
+          <span class="ut-step-text">The 'Last Order' section shows my <em>Domino's Pizza order from April 30th</em>. I'll tap on that to see if I can get a refund or some help.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Chatbot barrier</span>
+          <span class="ut-step-text">It immediately brings up a chat <em>'Powered by AI'</em>. The bot is giving me canned options like 'My order never arrived' and 'Wrong or missing items'. <em>This isn't what I want; I need a person.</em></span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Searching</span>
+          <span class="ut-step-text">I'm looking all over this 'Help' screen for a phone icon or a 'Call Us' button. I'm tapping through 'Help with an order' and 'More options', but it just keeps giving me more menus for 'Change payment method' or 'Another order issue'.</span>
+        </div>
+        <div class="ut-think-step">
+          <span class="ut-step-label">Frustration</span>
+          <span class="ut-step-text"><em>I'm clicking everything</em>, but it feels like the app is hiding a phone number on purpose to force me to use the bot. My break is almost over, and I'm still just staring at a list of links and an AI that doesn't understand I just want to speak to a human.</span>
+        </div>
+      </div>
+
+      <div class="seq-row">
+        <span class="seq-label">SEQ Score</span>
+        <div class="seq-score-wrap">
+          <div class="seq-dot">1</div>
+          <div class="seq-dot active-low">2</div>
+          <div class="seq-dot">3</div><div class="seq-dot">4</div>
+          <div class="seq-dot">5</div><div class="seq-dot">6</div><div class="seq-dot">7</div>
+        </div>
+        <span class="seq-reason">It was extremely difficult because the app hides direct contact information behind layers of automated menus and AI chatbots, which is the last thing I want when in a hurry.</span>
+      </div>
+
+      <div class="ut-insight">
+        <p class="ut-insight-label">Researcher note — PURE vs SEQ alignment</p>
+        <p class="ut-insight-text">Alex's SEQ of 2 is the strongest validation of the PURE evaluation across all three tasks. The think-aloud directly surfaces the same architectural dead end identified in PURE Step 5: no phone number, no free-text bypass, no human escalation path. Alex's unprompted observation — <em>"it feels like the app is hiding a phone number on purpose"</em> — independently identifies the deliberate support-suppression strategy flagged in the PURE analysis. The emotional trajectory also matches exactly: mild frustration at step 2 (chatbot barrier), escalating to task abandonment by step 5 as the clock ran out. The PURE analysis predicted maximum frustration; the think-aloud confirmed it verbatim.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-task delta -->
+  <p class="section-heading" style="margin-top:28px;">PURE evaluation vs user testing — alignment summary</p>
+  <div class="ut-delta">
+    <div class="ut-delta-item">
+      <p class="ut-delta-head">Task 1 alignment</p>
+      <p class="ut-delta-val">PURE predicted <span>moderate friction (avg 2.2)</span>. SEQ returned <span>6/7</span>. Motivated users navigate BOGO mechanics successfully — friction is real but surmountable. PURE correctly identified "BGL" labels and pre-set quantity as the key friction points, both surfaced in the think-aloud.</p>
+    </div>
+    <div class="ut-delta-item">
+      <p class="ut-delta-head">Task 2 alignment</p>
+      <p class="ut-delta-val">PURE predicted a <span>PURE 3 failure at Step 7</span> (no grand total shown). SEQ returned <span>4/7</span>. Alex confirmed the tip base confusion ($26.51 vs $17.51) and the payment edit discoverability issue — both predicted by PURE Steps 4 and 7.</p>
+    </div>
+    <div class="ut-delta-item">
+      <p class="ut-delta-head">Task 3 alignment</p>
+      <p class="ut-delta-val">PURE predicted an <span>architecturally impossible goal</span> (PURE 3, CL 5). SEQ returned <span>2/7</span> — the lowest score across all tasks. Alex independently concluded the app deliberately hides contact info, exactly matching the PURE "support-suppression" finding.</p>
+    </div>
+  </div>
+
+</section>
+
 </main>
 
 <script>
@@ -1009,6 +1383,10 @@ function showTask(id) {
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleUT(id) {
+  const block = document.getElementById(id);
+  block.classList.toggle('open');
 }
 </script>
 </body>
