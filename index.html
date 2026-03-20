@@ -97,6 +97,13 @@
     padding: 0 24px;
     display: flex;
     gap: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+  }
+  .tab-bar .inner::-webkit-scrollbar {
+    display: none; 
   }
   .tab-btn {
     background: none;
@@ -278,7 +285,13 @@
   .design-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
   /* ── CROSS-TASK SUMMARY ── */
-  .cross-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 8px;
+  }
+  .cross-table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px; }
   .cross-table th {
     font-family: 'DM Mono', monospace;
     font-size: 10px; text-transform: uppercase; letter-spacing: .08em;
@@ -290,13 +303,6 @@
   .cross-table tr:last-child td { border-bottom: none; }
   .cross-table tr:hover td { background: #F9F8F5; }
   .bold-row td { font-weight: 500; color: var(--text-primary); }
-
-  @media (max-width: 600px) {
-    .summary-grid { grid-template-columns: 1fr 1fr; }
-    .design-grid { grid-template-columns: 1fr; }
-    .header-meta { gap: 16px; }
-    .tab-btn { padding: 12px 12px 10px; font-size: 12px; }
-  }
 
   /* ── USER TESTING SECTION ── */
   .ut-header { margin-bottom: 28px; }
@@ -446,6 +452,38 @@
   .ut-delta-head { font-size: 11px; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: .06em; font-family: 'DM Mono', monospace; margin-bottom: 4px; }
   .ut-delta-val { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .ut-delta-val span { font-weight: 500; }
+
+  /* ── 移动端自适应 (Mobile Responsive) ── */
+  @media (max-width: 600px) {
+    /* 缩小整体页面的左右边距 */
+    main { padding: 24px 16px 60px; }
+    .site-header .inner, .tab-bar .inner { padding: 0 16px; }
+
+    /* 调整头部信息排版 */
+    .header-title { font-size: 24px; }
+    .header-meta { gap: 12px; flex-direction: column; }
+
+    /* 将所有并排的卡片网格改为单列向下排列 */
+    .summary-grid, .design-grid, .ut-compare-grid, .ut-delta { 
+      grid-template-columns: 1fr; 
+      flex-direction: column;
+    }
+
+    /* 调整导航按钮的点击区域 */
+    .tab-btn { padding: 12px 16px 10px; font-size: 13px; }
+
+    /* 调整摩擦力评估条（Friction track），防止左侧文字过长挤压进度条 */
+    .friction-row { gap: 8px; }
+    .fr-label { width: 100px; font-size: 11px; line-height: 1.2; }
+
+    /* 优化用户测试 Persona 卡片的排版，改为居中堆叠 */
+    .ut-persona { flex-direction: column; align-items: center; text-align: center; }
+    .ut-persona-tags { justify-content: center; }
+
+    /* 优化 Think-aloud 步骤的排版 */
+    .ut-think-step { flex-direction: column; gap: 4px; }
+    .ut-step-label { min-width: auto; padding-top: 0; }
+  }
 </style>
 </head>
 <body>
@@ -488,7 +526,6 @@
 
 <main>
 
-<!-- ════════════════════════════════ TASK 1 ════════════════════════════════ -->
 <section id="t1" class="task-section active">
   <div class="task-header">
     <p class="task-kicker">Task 1 · 5 steps</p>
@@ -635,7 +672,6 @@
   <div class="finding-row"><div class="finding-dot"></div><div class="finding-text">Promotional mechanics (BOGO, upsell carousel) surface at every decision point, consistently prioritising conversion over task clarity.</div></div>
 </section>
 
-<!-- ════════════════════════════════ TASK 2 ════════════════════════════════ -->
 <section id="t2" class="task-section">
   <div class="task-header">
     <p class="task-kicker">Task 2 · 7 steps</p>
@@ -845,7 +881,6 @@
   <div class="finding-row"><div class="finding-dot"></div><div class="finding-text">No payment edit affordance label on checkout screen — users must infer the row is tappable, reducing discoverability.</div></div>
 </section>
 
-<!-- ════════════════════════════════ TASK 3 ════════════════════════════════ -->
 <section id="t3" class="task-section">
   <div class="task-header">
     <p class="task-kicker">Task 3 · 5 steps</p>
@@ -1056,7 +1091,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════ SUMMARY ════════════════════════════════ -->
 <section id="summary" class="task-section">
   <div class="task-header">
     <p class="task-kicker">Cross-task analysis</p>
@@ -1072,52 +1106,54 @@
   </div>
 
   <p class="section-heading">Task comparison</p>
-  <table class="cross-table">
-    <thead>
-      <tr>
-        <th>Task</th>
-        <th>Steps</th>
-        <th>Avg cognitive load</th>
-        <th>PURE 2+ steps</th>
-        <th>PURE 3 steps</th>
-        <th>Heuristic violations</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Task 1 — Search &amp; Add to cart</td>
-        <td>5</td>
-        <td>2.2 / 5</td>
-        <td>4 / 5</td>
-        <td>0</td>
-        <td>6 (H1, H2, H4, H5, H7, H8)</td>
-      </tr>
-      <tr>
-        <td>Task 2 — Payment &amp; Tip</td>
-        <td>7</td>
-        <td>2.0 / 5</td>
-        <td>5 / 7</td>
-        <td>1 (Step 7)</td>
-        <td>7 (H1, H2, H3, H4, H5, H6)</td>
-      </tr>
-      <tr>
-        <td>Task 3 — Customer Support</td>
-        <td>5</td>
-        <td>3.0 / 5</td>
-        <td>4 / 5</td>
-        <td>1 (Step 5)</td>
-        <td>8 (H1, H3, H4, H5, H6, H7, H9, H10)</td>
-      </tr>
-      <tr class="bold-row">
-        <td>Combined</td>
-        <td>17</td>
-        <td>2.4 / 5</td>
-        <td>13 / 17</td>
-        <td>2 critical</td>
-        <td>9 unique heuristics violated</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="cross-table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Steps</th>
+          <th>Avg cognitive load</th>
+          <th>PURE 2+ steps</th>
+          <th>PURE 3 steps</th>
+          <th>Heuristic violations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Task 1 — Search &amp; Add to cart</td>
+          <td>5</td>
+          <td>2.2 / 5</td>
+          <td>4 / 5</td>
+          <td>0</td>
+          <td>6 (H1, H2, H4, H5, H7, H8)</td>
+        </tr>
+        <tr>
+          <td>Task 2 — Payment &amp; Tip</td>
+          <td>7</td>
+          <td>2.0 / 5</td>
+          <td>5 / 7</td>
+          <td>1 (Step 7)</td>
+          <td>7 (H1, H2, H3, H4, H5, H6)</td>
+        </tr>
+        <tr>
+          <td>Task 3 — Customer Support</td>
+          <td>5</td>
+          <td>3.0 / 5</td>
+          <td>4 / 5</td>
+          <td>1 (Step 5)</td>
+          <td>8 (H1, H3, H4, H5, H6, H7, H9, H10)</td>
+        </tr>
+        <tr class="bold-row">
+          <td>Combined</td>
+          <td>17</td>
+          <td>2.4 / 5</td>
+          <td>13 / 17</td>
+          <td>2 critical</td>
+          <td>9 unique heuristics violated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <p class="section-heading">Severity-ranked findings across all tasks</p>
   <div class="finding-row"><div class="finding-dot"></div><div class="finding-text">Task 3, Step 5 — Customer support phone number is architecturally absent. The primary task goal cannot be completed. No system feedback informs the user of this. Maximum severity.</div></div>
@@ -1150,7 +1186,6 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════ USER TESTING ════════════════════════════════ -->
 <section id="usertesting" class="task-section">
 
   <div class="ut-header">
@@ -1159,7 +1194,6 @@
     <p class="ut-meta">3 tasks · SEQ scores recorded · Gemini (Thinking) used as participant proxy</p>
   </div>
 
-  <!-- Persona card -->
   <div class="ut-persona">
     <div class="ut-avatar">AX</div>
     <div class="ut-persona-info">
@@ -1175,7 +1209,6 @@
     </div>
   </div>
 
-  <!-- SEQ Overview -->
   <p class="section-heading">SEQ Scores at a glance</p>
   <div class="ut-compare-grid">
     <div class="ut-compare-card">
@@ -1198,7 +1231,6 @@
     </div>
   </div>
 
-  <!-- Task 1 Think-Aloud -->
   <div class="ut-task-block open" id="ut-t1">
     <div class="ut-task-head" onclick="toggleUT('ut-t1')">
       <span class="ut-task-badge">Task 1</span>
@@ -1252,7 +1284,6 @@
     </div>
   </div>
 
-  <!-- Task 2 Think-Aloud -->
   <div class="ut-task-block" id="ut-t2">
     <div class="ut-task-head" onclick="toggleUT('ut-t2')">
       <span class="ut-task-badge">Task 2</span>
@@ -1305,7 +1336,6 @@
     </div>
   </div>
 
-  <!-- Task 3 Think-Aloud -->
   <div class="ut-task-block" id="ut-t3">
     <div class="ut-task-head" onclick="toggleUT('ut-t3')">
       <span class="ut-task-badge">Task 3</span>
@@ -1355,7 +1385,6 @@
     </div>
   </div>
 
-  <!-- Cross-task delta -->
   <p class="section-heading" style="margin-top:28px;">PURE evaluation vs user testing — alignment summary</p>
   <div class="ut-delta">
     <div class="ut-delta-item">
