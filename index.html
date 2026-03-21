@@ -1026,10 +1026,48 @@
     <p class="task-meta">Happy path · Uber Eats mobile (iOS)</p>
   </div>
 
+  <!-- STEP 1 — CORRECTED: starting point is Home feed, action is finding Account icon -->
   <div class="step-card">
     <div class="step-head">
-      <div class="step-num mod">1</div>
-      <div><p class="step-title">Tap Account tab to reach personal homepage</p><p class="step-screen">Screen: Home feed → Account profile page</p></div>
+      <div class="step-num">1</div>
+      <div><p class="step-title">Locate and tap the Account icon on the Home screen</p><p class="step-screen">Screen: Home feed — bottom navigation bar</p></div>
+    </div>
+    <div class="ratings">
+      <span class="pill pill-low">PURE 1 — Low friction</span>
+      <span class="pill pill-cog">Cognitive load 1 / 5</span>
+    </div>
+    <div class="divider"></div>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The Home feed is the starting point. The bottom navigation bar contains 5 icons: Home, Account (person silhouette), Search, Cart, and a second person-shaped icon. The Account icon's label is not persistently visible — icons rely on shape recognition alone with no text labels below them. For a distressed user in a hurry, the distinction between the two person-shaped icons may cause brief hesitation. Critically, there is no "Help" or "Support" shortcut anywhere on the Home screen — the user must first identify the Account icon as the indirect gateway to support.</p>
+        <div class="info-box">
+          <p class="info-label">Navigation entry point</p>
+          <p class="info-text">A user seeking customer service must correctly identify the Account icon as the path to Help — an indirect route that is not signposted from the Home feed. No shortcut or contextual help entry point exists on the most-visited screen in the app.</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H6 — Recognition over recall</span>
+          <span class="tag tag-ok">Bottom nav is a standard, familiar pattern</span>
+          <span class="tag tag-error">No persistent icon labels — recognition relies on shape alone</span>
+          <span class="tag tag-error">No direct "Support" shortcut from Home screen</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Tapping a bottom nav icon is a well-established mobile pattern requiring minimal effort. The absence of persistent text labels is a minor overhead, but the action is quick and familiar for most smartphone users.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Low — user may tap the wrong person icon, but recovery is immediate with one back-tap</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step1.jpg" alt="Task 3 Step 1 Screenshot" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 — CORRECTED: Account profile page, find and tap Help -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num mod">2</div>
+      <div><p class="step-title">Locate "Help" on the Account profile page and tap it</p><p class="step-screen">Screen: Account profile page → Help hub</p></div>
     </div>
     <div class="ratings">
       <span class="pill pill-mod">PURE 2 — Moderate friction</span>
@@ -1039,33 +1077,35 @@
     <div class="step-body">
       <div class="step-text">
         <p class="section-label">Friction points &amp; heuristic issues</p>
-        <p class="section-text">The profile page loads a flat, heterogeneous list of 9+ items: shortcuts, a promotional banner, and features (Family and teens, Rides, Promotions, Send a gift, Help, Saved groups…). "Help" is the 5th item, buried among commercial and account-management features with no visual grouping or hierarchy to signal it as a support entry point.</p>
+        <p class="section-text">The Account profile page loads a flat, heterogeneous list of 9+ items with no visual grouping: quick-action shortcuts (Favourites, Wallet, Orders), a "Try Uber One free" promotional banner, and a long feature list (Family and teens, Rides, Promotions, Send a gift, <strong>Help</strong>, Saved groups, Set up your business profile, Partner Rewards). "Help" is the 5th item in this list, visually equal to commercial and non-support entries. The Uber One promotional banner sits above Help, further pushing it down the hierarchy. There is no dedicated support section, no icon differentiation, and no priority signal to guide a distressed user directly to Help.</p>
         <div class="info-box">
           <p class="info-label">Discoverability concern</p>
-          <p class="info-text">Most users in distress expect a dedicated "Support" or "Contact Us" path — not a generic profile page where Help competes equally with "Rides," "Promotions," and "Partner Rewards."</p>
+          <p class="info-text">Most users in distress expect a dedicated "Support" or "Contact Us" path — not a generic profile page where Help competes equally with "Rides," "Promotions," and "Partner Rewards." The promotional banner occupying the space above Help actively deprioritises the support entry point.</p>
         </div>
         <div class="tags">
           <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
           <span class="tag tag-heuristic">H7 — Flexibility &amp; efficiency</span>
           <span class="tag tag-error">Help buried at item 5 of 9</span>
-          <span class="tag tag-error">No visual grouping or priority hierarchy</span>
+          <span class="tag tag-error">Promotional banner above Help reduces visual priority</span>
+          <span class="tag tag-error">No visual grouping or hierarchy separating support from commercial items</span>
         </div>
         <div class="divider"></div>
         <p class="section-label">Cognitive load</p>
-        <p class="section-text">The user must scan a flat, heterogeneous list of 9+ items. The presence of commercial items alongside support items increases visual noise for a stressed user.</p>
+        <p class="section-text">The user must scan a flat list of 9+ mixed-purpose items to locate "Help." The presence of commercial items (Uber One, Partner Rewards) alongside support items increases visual noise for a user already stressed about an order problem.</p>
         <p class="section-label">Error prevention</p>
-        <div class="tags"><span class="tag tag-error">Medium — user may navigate to "Orders" instead of "Help," expecting support to live there</span></div>
+        <div class="tags"><span class="tag tag-error">Medium — user may tap "Orders" instead of "Help," expecting support to live within their order history</span></div>
       </div>
       <div class="step-image">
-        <img src="task3_step1.jpg" alt="Task 3 Step 1 Screenshot" onerror="this.style.display='none'">
+        <img src="task3_step2.jpg" alt="Task 3 Step 2 Screenshot" onerror="this.style.display='none'">
       </div>
     </div>
   </div>
 
+  <!-- STEP 3 — CORRECTED: Help hub screen + tap last order -->
   <div class="step-card">
     <div class="step-head">
-      <div class="step-num mod">2</div>
-      <div><p class="step-title">Tap "Help" to open the help hub</p><p class="step-screen">Screen: Help hub — Restaurants / Stores tabs + chatbot entry</p></div>
+      <div class="step-num mod">3</div>
+      <div><p class="step-title">Navigate the Help hub and tap the last order</p><p class="step-screen">Screen: Help hub — Restaurants / Stores tabs + Last Order card</p></div>
     </div>
     <div class="ratings">
       <span class="pill pill-mod">PURE 2 — Moderate friction</span>
@@ -1075,54 +1115,24 @@
     <div class="step-body">
       <div class="step-text">
         <p class="section-label">Friction points &amp; heuristic issues</p>
-        <p class="section-text">An "Ongoing chat with Uber Support" banner creates confusion — it implies an active session may already exist. The "Restaurants" and "Stores" tabs force users to classify their issue before they can proceed. The "Last Order" shortcut is genuinely helpful. However, there is no visible "Talk to a person," "Call us," or "Live chat" option anywhere on this screen.</p>
+        <p class="section-text">The Help hub opens with an "Ongoing chat with Uber Support" banner at the top — implying an active session may already exist, which is confusing for a user who has not recently chatted. The "Restaurants" and "Stores" tabs require the user to classify their issue type before proceeding — an unnecessary pre-screening step. The "Last Order" card (Domino's Pizza, Apr 30, CA$31.71) is surfaced directly and is a genuinely strong UX shortcut. However, there is no visible "Talk to a person," "Call us," or "Live chat" option anywhere on this screen — human escalation is architecturally invisible at the hub level.</p>
         <div class="info-box">
           <p class="info-label">Human agent visibility</p>
-          <p class="info-text">Human escalation is architecturally invisible at the hub level. The entire page funnels users into the AI chatbot with no alternative path visible.</p>
+          <p class="info-text">A user scanning this screen for a phone number or live chat button will find nothing. The only forward paths are the AI chatbot or topic category lists. Human escalation is not offered as an option at any visible point on this screen.</p>
         </div>
         <div class="tags">
           <span class="tag tag-heuristic">H1 — Visibility of system status</span>
           <span class="tag tag-heuristic">H6 — Recognition over recall</span>
-          <span class="tag tag-error">No human agent entry point visible</span>
+          <span class="tag tag-ok">Last Order card surfaced directly — strong UX shortcut</span>
+          <span class="tag tag-error">No human agent entry point visible anywhere on screen</span>
           <span class="tag tag-error">Ongoing chat banner creates false session confusion</span>
-          <span class="tag tag-error">Restaurants/Stores tab forces pre-classification</span>
+          <span class="tag tag-error">Restaurants/Stores tab forces pre-classification of issue</span>
         </div>
         <div class="divider"></div>
         <p class="section-label">Cognitive load</p>
-        <p class="section-text">Three sequential decisions before any support interaction begins: classify context (Restaurants vs. Stores), assess chat state, identify correct topic category.</p>
+        <p class="section-text">Three micro-decisions before any support interaction begins: classify context (Restaurants vs. Stores), assess the existing chat state, identify the correct order or topic to tap. The Last Order shortcut reduces one decision, but the banner and tab overhead remain.</p>
         <p class="section-label">Error prevention</p>
-        <div class="tags"><span class="tag tag-error">High — user with a non-order issue may select the wrong tab and receive irrelevant AI routing</span></div>
-      </div>
-      <div class="step-image">
-        <img src="task3_step2.jpg" alt="Task 3 Step 2 Screenshot" onerror="this.style.display='none'">
-      </div>
-    </div>
-  </div>
-
-  <div class="step-card">
-    <div class="step-head">
-      <div class="step-num">3</div>
-      <div><p class="step-title">Tap the last order (Domino's Pizza)</p><p class="step-screen">Screen: Help hub → Order issue category list</p></div>
-    </div>
-    <div class="ratings">
-      <span class="pill pill-low">PURE 1 — Low friction</span>
-      <span class="pill pill-cog">Cognitive load 2 / 5</span>
-    </div>
-    <div class="divider"></div>
-    <div class="step-body">
-      <div class="step-text">
-        <p class="section-label">Friction points &amp; heuristic issues</p>
-        <p class="section-text">Surfacing the last order directly on the Help hub is a strong UX decision — it removes the need to navigate to a separate order history screen. The order card shows restaurant name, date, and total at a glance. The issue category list uses plain, user-friendly language throughout.</p>
-        <div class="tags">
-          <span class="tag tag-ok">Good shortcut — last order surfaced directly</span>
-          <span class="tag tag-ok">Plain language category labels</span>
-          <span class="tag tag-error">No "Contact support directly" option in category list</span>
-        </div>
-        <div class="divider"></div>
-        <p class="section-label">Cognitive load</p>
-        <p class="section-text">Single decision. The category list is well-structured and recognisable, keeping cognitive effort low.</p>
-        <p class="section-label">Error prevention</p>
-        <div class="tags"><span class="tag tag-ok">Minimal risk — order context is pre-filled</span></div>
+        <div class="tags"><span class="tag tag-error">High — user selecting wrong tab (e.g. Stores for a restaurant order) receives irrelevant AI routing with no clear way back</span></div>
       </div>
       <div class="step-image">
         <img src="task3_step3.jpg" alt="Task 3 Step 3 Screenshot" onerror="this.style.display='none'">
@@ -1130,10 +1140,11 @@
     </div>
   </div>
 
+  <!-- STEP 4 — issue category → AI chatbot (content unchanged, image tag preserved) -->
   <div class="step-card">
     <div class="step-head">
       <div class="step-num mod">4</div>
-      <div><p class="step-title">Tap "Another order issue" category</p><p class="step-screen">Screen: Issue list → AI chatbot (topic-routed)</p></div>
+      <div><p class="step-title">Select an issue category — e.g. "Another order issue"</p><p class="step-screen">Screen: Order issue category list → AI chatbot (topic-routed)</p></div>
     </div>
     <div class="ratings">
       <span class="pill pill-mod">PURE 2 — Moderate friction</span>
@@ -1152,13 +1163,13 @@
           <span class="tag tag-heuristic">H1 — Visibility of system status</span>
           <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
           <span class="tag tag-heuristic">H10 — Help &amp; documentation</span>
-          <span class="tag tag-error">Circular category duplication</span>
+          <span class="tag tag-error">Circular category duplication — same chips as previous screen</span>
           <span class="tag tag-error">"Powered by AI" disclosure buried in 12px subtext</span>
           <span class="tag tag-error">No free-text input — human bypass impossible</span>
         </div>
         <div class="divider"></div>
         <p class="section-label">Cognitive load</p>
-        <p class="section-text">User must recognise the duplicate menu, understand they are inside an AI system from minimal signposting, and begin processing that direct human contact may not be possible.</p>
+        <p class="section-text">User must recognise the duplicate menu, understand they are inside an AI system from minimal signposting, and begin processing that direct human contact may not be possible — all while managing frustration over a real order issue.</p>
         <p class="section-label">Error prevention</p>
         <div class="tags"><span class="tag tag-error">High — user may believe they are in a human chat session due to inadequate AI disclosure</span></div>
       </div>
@@ -1242,9 +1253,9 @@
   </div>
 
   <p class="section-heading">Friction trajectory</p>
-  <div class="friction-row"><span class="fr-label">Step 1 — Account tab</span><div class="fr-track"><div class="fr-fill fr-fill-mod" style="width:40%"></div></div><span class="fr-value fr-val-mod">2</span></div>
-  <div class="friction-row"><span class="fr-label">Step 2 — Help hub</span><div class="fr-track"><div class="fr-fill fr-fill-mod" style="width:55%"></div></div><span class="fr-value fr-val-mod">2</span></div>
-  <div class="friction-row"><span class="fr-label">Step 3 — Last order</span><div class="fr-track"><div class="fr-fill fr-fill-low" style="width:20%"></div></div><span class="fr-value fr-val-low">1</span></div>
+  <div class="friction-row"><span class="fr-label">Step 1 — Find Account icon</span><div class="fr-track"><div class="fr-fill fr-fill-low" style="width:20%"></div></div><span class="fr-value fr-val-low">1</span></div>
+  <div class="friction-row"><span class="fr-label">Step 2 — Account page / Help</span><div class="fr-track"><div class="fr-fill fr-fill-mod" style="width:40%"></div></div><span class="fr-value fr-val-mod">2</span></div>
+  <div class="friction-row"><span class="fr-label">Step 3 — Help hub / Last order</span><div class="fr-track"><div class="fr-fill fr-fill-mod" style="width:55%"></div></div><span class="fr-value fr-val-mod">2</span></div>
   <div class="friction-row"><span class="fr-label">Step 4 — Issue category</span><div class="fr-track"><div class="fr-fill fr-fill-mod" style="width:55%"></div></div><span class="fr-value fr-val-mod">2</span></div>
   <div class="friction-row"><span class="fr-label">Step 5 — Human / phone</span><div class="fr-track"><div class="fr-fill fr-fill-high" style="width:100%"></div></div><span class="fr-value fr-val-high">3</span></div>
 
