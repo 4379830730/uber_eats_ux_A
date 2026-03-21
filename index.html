@@ -197,6 +197,47 @@
 
   .divider { height: 0.5px; background: var(--border); margin: 12px 0; }
 
+  /* ── STEP CONTENT & IMAGE ── */
+  .step-body {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .step-text {
+    flex: 1;
+  }
+  .step-image {
+    width: 220px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-md);
+    background: #FAFAF8;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .step-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* ── 多图并排样式 (2图或4图) ── */
+  .step-image-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex-shrink: 0;
+    max-width: 340px; /* 强制超过两张图时换行，形成 2x2 网格 */
+  }
+  .step-image-group .step-image {
+    width: 160px; 
+    min-height: 180px;
+  }
+
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px; font-weight: 500;
@@ -455,34 +496,29 @@
 
   /* ── 移动端自适应 (Mobile Responsive) ── */
   @media (max-width: 600px) {
-    /* 缩小整体页面的左右边距 */
     main { padding: 24px 16px 60px; }
     .site-header .inner, .tab-bar .inner { padding: 0 16px; }
-
-    /* 调整头部信息排版 */
     .header-title { font-size: 24px; }
     .header-meta { gap: 12px; flex-direction: column; }
-
-    /* 将所有并排的卡片网格改为单列向下排列 */
     .summary-grid, .design-grid, .ut-compare-grid, .ut-delta { 
       grid-template-columns: 1fr; 
       flex-direction: column;
     }
-
-    /* 调整导航按钮的点击区域 */
     .tab-btn { padding: 12px 16px 10px; font-size: 13px; }
-
-    /* 调整摩擦力评估条（Friction track），防止左侧文字过长挤压进度条 */
     .friction-row { gap: 8px; }
     .fr-label { width: 100px; font-size: 11px; line-height: 1.2; }
-
-    /* 优化用户测试 Persona 卡片的排版，改为居中堆叠 */
     .ut-persona { flex-direction: column; align-items: center; text-align: center; }
     .ut-persona-tags { justify-content: center; }
-
-    /* 优化 Think-aloud 步骤的排版 */
     .ut-think-step { flex-direction: column; gap: 4px; }
     .ut-step-label { min-width: auto; padding-top: 0; }
+
+    /* 手机端图片排版变成上下结构 */
+    .step-body { flex-direction: column; gap: 16px; }
+    .step-image { width: 100%; max-width: 280px; margin: 0 auto; min-height: auto; }
+    
+    /* 手机端多图平分空间 */
+    .step-image-group { width: 100%; max-width: 100%; justify-content: center; gap: 10px; }
+    .step-image-group .step-image { width: 48%; max-width: 160px; margin: 0; min-height: auto; }
   }
 </style>
 </head>
@@ -543,12 +579,19 @@
       <span class="pill pill-cog">Cognitive load 1 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">Home screen launches with clear hierarchy — address, category chips, and featured restaurants are immediately visible. No heuristic violations. The fee disclaimer banner introduces a cautionary tone but does not block action.</p>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User simply opens the app. No decision-making required. Familiar food-delivery layout minimises the learning curve.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">Home screen launches with clear hierarchy — address, category chips, and featured restaurants are immediately visible. No heuristic violations. The fee disclaimer banner introduces a cautionary tone but does not block action.</p>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User simply opens the app. No decision-making required. Familiar food-delivery layout minimises the learning curve.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task1_step1.jpg" alt="Task 1 Step 1 Screenshot" onerror="this.style.display='none'">
+      </div>
+    </div>
   </div>
 
   <div class="step-card">
@@ -561,18 +604,25 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">Search lives in the bottom navigation bar, not at the top where most food-delivery apps position it. A "Sandwich" category chip is already visible on the home feed — users may tap that instead of the search bar, diverging from the happy path. The keyboard displays Chinese labels ("搜索", "空格"), a localization inconsistency that creates minor visual noise.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
-      <span class="tag tag-heuristic">H8 — Aesthetic &amp; minimalist design</span>
-      <span class="tag tag-error">Localization conflict</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">Search lives in the bottom navigation bar, not at the top where most food-delivery apps position it. A "Sandwich" category chip is already visible on the home feed — users may tap that instead of the search bar, diverging from the happy path. The keyboard displays Chinese labels ("搜索", "空格"), a localization inconsistency that creates minor visual noise.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
+          <span class="tag tag-heuristic">H8 — Aesthetic &amp; minimalist design</span>
+          <span class="tag tag-error">Localization conflict</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Dual affordances (category chip vs. search bar) create a minor decision point before the user can proceed.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Medium — wrong-path risk via category chip</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task1_step2.jpg" alt="Task 1 Step 2 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Dual affordances (category chip vs. search bar) create a minor decision point before the user can proceed.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Medium — wrong-path risk via category chip</span></div>
   </div>
 
   <div class="step-card">
@@ -585,19 +635,26 @@
       <span class="pill pill-cog">Cognitive load 3 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">Inline item previews (Clubhouse CA$16.20, Druxy's Famous Reuben CA$20.40) appear before the user selects a restaurant, blurring the list/menu boundary. The prominent "Buy 1, get 1 free" badge nudges users toward a promotional decision before they've chosen a restaurant. McDonald's carries a "Most popular" badge despite a lower rating (4.2) than Williams Fresh Cafe (4.5), creating a trust inconsistency.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H7 — Flexibility &amp; efficiency</span>
-      <span class="tag tag-error">Choice overload</span>
-      <span class="tag tag-error">Promotional dark pattern</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">Inline item previews (Clubhouse CA$16.20, Druxy's Famous Reuben CA$20.40) appear before the user selects a restaurant, blurring the list/menu boundary. The prominent "Buy 1, get 1 free" badge nudges users toward a promotional decision before they've chosen a restaurant. McDonald's carries a "Most popular" badge despite a lower rating (4.2) than Williams Fresh Cafe (4.5), creating a trust inconsistency.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H7 — Flexibility &amp; efficiency</span>
+          <span class="tag tag-error">Choice overload</span>
+          <span class="tag tag-error">Promotional dark pattern</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must scan ratings, delivery fees, ETAs, and promo badges simultaneously while deciding whether to engage with inline item cards or the restaurant row itself.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — inline item tap bypasses restaurant menu selection</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task1_step3.jpg" alt="Task 1 Step 3 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must scan ratings, delivery fees, ETAs, and promo badges simultaneously while deciding whether to engage with inline item cards or the restaurant row itself.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — inline item tap bypasses restaurant menu selection</span></div>
   </div>
 
   <div class="step-card">
@@ -610,19 +667,26 @@
       <span class="pill pill-cog">Cognitive load 3 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The restaurant opens as a bottom sheet modal, placing fee info and the Delivery/Pickup toggle above the menu — the primary goal is buried. The BOGO section is the first content block. Item descriptions are truncated with no "read more" affordance — a concern for users with dietary restrictions. Customisation options use internal shorthand codes ("BGL Everything", "CHS Cheddar 2 slices") violating real-world language expectations.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H2 — Match: system &amp; real world</span>
-      <span class="tag tag-heuristic">H8 — Aesthetic &amp; minimalist design</span>
-      <span class="tag tag-error">Truncated descriptions — allergen risk</span>
-      <span class="tag tag-error">Abbreviated option labels</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The restaurant opens as a bottom sheet modal, placing fee info and the Delivery/Pickup toggle above the menu — the primary goal is buried. The BOGO section is the first content block. Item descriptions are truncated with no "read more" affordance — a concern for users with dietary restrictions. Customisation options use internal shorthand codes ("BGL Everything", "CHS Cheddar 2 slices") violating real-world language expectations.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H2 — Match: system &amp; real world</span>
+          <span class="tag tag-heuristic">H8 — Aesthetic &amp; minimalist design</span>
+          <span class="tag tag-error">Truncated descriptions — allergen risk</span>
+          <span class="tag tag-error">Abbreviated option labels</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Layered decisions: promo mechanics, service info, truncated descriptions, and cryptic customisation labels compound sequentially.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Medium — wrong bagel variant selected due to label shorthand</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task1_step4.jpg" alt="Task 1 Step 4 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Layered decisions: promo mechanics, service info, truncated descriptions, and cryptic customisation labels compound sequentially.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Medium — wrong bagel variant selected due to label shorthand</span></div>
   </div>
 
   <div class="step-card">
@@ -635,19 +699,26 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The CTA reads "Add 2 · $9.00 $18.00" — quantity 2 is pre-set by the BOGO promotion without explicit user consent or inline explanation. The dual-price display in one compact button is visually dense. "Saving $9 with promotions" only appears after adding — not before — removing pre-commitment transparency. An upsell carousel in the cart introduces distraction at the point of commitment.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H5 — Error prevention</span>
-      <span class="tag tag-error">Pre-set quantity without consent</span>
-      <span class="tag tag-error">Post-add saving disclosure</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The CTA reads "Add 2 · $9.00 $18.00" — quantity 2 is pre-set by the BOGO promotion without explicit user consent or inline explanation. The dual-price display in one compact button is visually dense. "Saving $9 with promotions" only appears after adding — not before — removing pre-commitment transparency. An upsell carousel in the cart introduces distraction at the point of commitment.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H5 — Error prevention</span>
+          <span class="tag tag-error">Pre-set quantity without consent</span>
+          <span class="tag tag-error">Post-add saving disclosure</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Core action is simple, but surrounding quantity and pricing information requires extra parsing before the user can commit confidently.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — quantity defaults to 2 without clear pre-action warning</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task1_step5.jpg" alt="Task 1 Step 5 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Core action is simple, but surrounding quantity and pricing information requires extra parsing before the user can commit confidently.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — quantity defaults to 2 without clear pre-action warning</span></div>
   </div>
 
   <p class="section-heading">Task 1 — Overall assessment</p>
@@ -689,17 +760,24 @@
       <span class="pill pill-cog">Cognitive load 1 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The cart screen clearly displays the selected item, quantity stepper, promotion badge, and "Go to checkout" CTA. The "Offers for you" upsell carousel is visible but does not block the primary path. "Saving $9 with promotions" banner provides a positive transparency signal.</p>
-    <div class="tags">
-      <span class="tag tag-ok">No violations</span>
-      <span class="tag tag-error">Upsell carousel adds visual noise</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The cart screen clearly displays the selected item, quantity stepper, promotion badge, and "Go to checkout" CTA. The "Offers for you" upsell carousel is visible but does not block the primary path. "Saving $9 with promotions" banner provides a positive transparency signal.</p>
+        <div class="tags">
+          <span class="tag tag-ok">No violations</span>
+          <span class="tag tag-error">Upsell carousel adds visual noise</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">The user is returning to a state they already created. Recognising their item and tapping the clear CTA requires minimal effort.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step1.jpg" alt="Task 2 Step 1 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">The user is returning to a state they already created. Recognising their item and tapping the clear CTA requires minimal effort.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
   </div>
 
   <div class="step-card">
@@ -712,14 +790,21 @@
       <span class="pill pill-cog">Cognitive load 1 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">"Go to checkout" is a prominent full-width black CTA pinned to the bottom of the screen. Label is unambiguous and action-oriented. No heuristic issues at this step.</p>
-    <div class="tags"><span class="tag tag-ok">Clear, standard CTA pattern</span></div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Single, obvious action. No competing affordances at the bottom of screen.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">"Go to checkout" is a prominent full-width black CTA pinned to the bottom of the screen. Label is unambiguous and action-oriented. No heuristic issues at this step.</p>
+        <div class="tags"><span class="tag tag-ok">Clear, standard CTA pattern</span></div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Single, obvious action. No competing affordances at the bottom of screen.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step2.jpg" alt="Task 2 Step 2 Screenshot" onerror="this.style.display='none'">
+      </div>
+    </div>
   </div>
 
   <div class="step-card">
@@ -732,20 +817,27 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">An interstitial upsell screen intercepts the checkout flow with 6+ add-on items. The dismiss action "No thanks" is a socially loaded phrase that introduces mild guilt-inducing friction (confirmshaming). The screen does not display the user's current order total, removing contextual grounding right before payment. No progress indicator shows how many checkout steps remain.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
-      <span class="tag tag-error">Confirmshaming — "No thanks"</span>
-      <span class="tag tag-error">Mandatory interruption pre-payment</span>
-      <span class="tag tag-error">No order total shown</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">An interstitial upsell screen intercepts the checkout flow with 6+ add-on items. The dismiss action "No thanks" is a socially loaded phrase that introduces mild guilt-inducing friction (confirmshaming). The screen does not display the user's current order total, removing contextual grounding right before payment. No progress indicator shows how many checkout steps remain.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
+          <span class="tag tag-error">Confirmshaming — "No thanks"</span>
+          <span class="tag tag-error">Mandatory interruption pre-payment</span>
+          <span class="tag tag-error">No order total shown</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must scan 6 upsell items, resist social pressure, and re-orient to their goal of changing payment method.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Medium — user may accidentally add an upsell item</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step3.jpg" alt="Task 2 Step 3 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must scan 6 upsell items, resist social pressure, and re-orient to their goal of changing payment method.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Medium — user may accidentally add an upsell item</span></div>
   </div>
 
   <div class="step-card">
@@ -758,19 +850,26 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The checkout screen shows "Apple Pay" as a summary row with a right chevron, suggesting it is tappable. However, this interaction — tapping a list row to open a full payment modal — is not clearly signalled. Users accustomed to a dedicated "Change" or "Edit" button may overlook it. A partially cut-off courier upsell banner at the top competes with the order summary.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H6 — Recognition over recall</span>
-      <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
-      <span class="tag tag-error">No "Edit payment" label — low discoverability</span>
-      <span class="tag tag-error">Courier upsell occupies top zone</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The checkout screen shows "Apple Pay" as a summary row with a right chevron, suggesting it is tappable. However, this interaction — tapping a list row to open a full payment modal — is not clearly signalled. Users accustomed to a dedicated "Change" or "Edit" button may overlook it. A partially cut-off courier upsell banner at the top competes with the order summary.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H6 — Recognition over recall</span>
+          <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
+          <span class="tag tag-error">No "Edit payment" label — low discoverability</span>
+          <span class="tag tag-error">Courier upsell occupies top zone</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must infer the payment row is tappable to edit rather than being given a clear affordance.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Medium — users may tap "Next" without realising payment can be changed</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step4.jpg" alt="Task 2 Step 4 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must infer the payment row is tappable to edit rather than being given a clear affordance.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Medium — users may tap "Next" without realising payment can be changed</span></div>
   </div>
 
   <div class="step-card">
@@ -783,20 +882,27 @@
       <span class="pill pill-cog">Cognitive load 3 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The "Pay with" modal lists two identical entries labelled "Apple Pay" — no distinguishing detail (last 4 digits, card type, default badge). The Personal/Business toggle adds unexpected complexity. "Uber Cash: $0.00" draws attention to an empty wallet. No confirmation feedback is provided when a method is selected.</p>
-    <div class="tags">
-      <span class="tag tag-heuristic">H6 — Recognition over recall</span>
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-error">Duplicate "Apple Pay" entries</span>
-      <span class="tag tag-error">Personal / Business toggle adds unexpected complexity</span>
-      <span class="tag tag-error">No selection confirmation feedback</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The "Pay with" modal lists two identical entries labelled "Apple Pay" — no distinguishing detail (last 4 digits, card type, default badge). The Personal/Business toggle adds unexpected complexity. "Uber Cash: $0.00" draws attention to an empty wallet. No confirmation feedback is provided when a method is selected.</p>
+        <div class="tags">
+          <span class="tag tag-heuristic">H6 — Recognition over recall</span>
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-error">Duplicate "Apple Pay" entries</span>
+          <span class="tag tag-error">Personal / Business toggle adds unexpected complexity</span>
+          <span class="tag tag-error">No selection confirmation feedback</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must interpret duplicate labels, decide between Personal/Business, assess Uber Cash balance, and confirm selection — all in one unguided modal.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — duplicate labels make correct selection ambiguous</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step5.jpg" alt="Task 2 Step 5 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must interpret duplicate labels, decide between Personal/Business, assess Uber Cash balance, and confirm selection — all in one unguided modal.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — duplicate labels make correct selection ambiguous</span></div>
   </div>
 
   <div class="step-card">
@@ -809,17 +915,24 @@
       <span class="pill pill-cog">Cognitive load 1 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">"Next" is a clear full-width CTA. The checkout summary provides a well-structured cost breakdown. Minor: the CTA label "Next" is generic — "Proceed to tip" would better set expectations.</p>
-    <div class="tags">
-      <span class="tag tag-ok">Clear price breakdown — good transparency</span>
-      <span class="tag tag-error">Generic CTA label — no expectation setting</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">"Next" is a clear full-width CTA. The checkout summary provides a well-structured cost breakdown. Minor: the CTA label "Next" is generic — "Proceed to tip" would better set expectations.</p>
+        <div class="tags">
+          <span class="tag tag-ok">Clear price breakdown — good transparency</span>
+          <span class="tag tag-error">Generic CTA label — no expectation setting</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">The cost breakdown is clear and well-structured. The user simply reads the total and taps forward.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task2_step6.jpg" alt="Task 2 Step 6 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">The cost breakdown is clear and well-structured. The user simply reads the total and taps forward.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-ok">Minimal risk</span></div>
   </div>
 
   <div class="step-card flagged">
@@ -835,26 +948,46 @@
       <span class="pill pill-cog">Cognitive load 4 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The tip screen uses emotionally loaded labels — "Cheers to you (15%)", "You're great (18%)", "You're my hero (25%)" — nudging users toward higher tips with positive identity language. The 18% option is pre-selected, exploiting anchoring bias.</p>
-    <div class="spotlight">
-      <p class="spotlight-label">System status visibility failure — special focus</p>
-      <p class="spotlight-text">When the user taps "Edit" and enters a custom amount (e.g. $4.00), the "Order total" on the input screen reads $17.51 — the food + fees subtotal only, excluding the tip. The all-in grand total (food + fees + tip) is never shown. After tapping "Save," only "Your tip: $4.00" appears — with no running grand total. The user must mentally add $17.51 + $4.00, with no app confirmation. This directly breaks the core task goal of verifying the total price — a serious violation of H1.</p>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The tip screen uses emotionally loaded labels — "Cheers to you (15%)", "You're great (18%)", "You're my hero (25%)" — nudging users toward higher tips with positive identity language. The 18% option is pre-selected, exploiting anchoring bias.</p>
+        <div class="spotlight">
+          <p class="spotlight-label">System status visibility failure — special focus</p>
+          <p class="spotlight-text">When the user taps "Edit" and enters a custom amount (e.g. $4.00), the "Order total" on the input screen reads $17.51 — the food + fees subtotal only, excluding the tip. The all-in grand total (food + fees + tip) is never shown. After tapping "Save," only "Your tip: $4.00" appears — with no running grand total. The user must mentally add $17.51 + $4.00, with no app confirmation. This directly breaks the core task goal of verifying the total price — a serious violation of H1.</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H5 — Error prevention</span>
+          <span class="tag tag-heuristic">H2 — Match: system &amp; real world</span>
+          <span class="tag tag-error">Pre-selected 18% tip — anchoring bias</span>
+          <span class="tag tag-error">Emotionally loaded preset labels</span>
+          <span class="tag tag-error">Custom input shows subtotal, not grand total</span>
+          <span class="tag tag-error">No all-in total after tip confirmation</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must resist pre-selected nudges, interpret loaded labels, and manually perform mental arithmetic to determine true final charge — without any UI confirmation.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — user cannot verify the final charge before tapping "Place order"</span></div>
+      </div>
+      
+      <div class="step-image-group">
+        <div class="step-image">
+          <img src="task2_step7_1.jpg" alt="Task 2 Step 7 Screenshot 1" onerror="this.style.display='none'">
+        </div>
+        <div class="step-image">
+          <img src="task2_step7_2.jpg" alt="Task 2 Step 7 Screenshot 2" onerror="this.style.display='none'">
+        </div>
+        <div class="step-image">
+          <img src="task2_step7_3.jpg" alt="Task 2 Step 7 Screenshot 3" onerror="this.style.display='none'">
+        </div>
+        <div class="step-image">
+          <img src="task2_step7_4.jpg" alt="Task 2 Step 7 Screenshot 4" onerror="this.style.display='none'">
+        </div>
+      </div>
+      
     </div>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H5 — Error prevention</span>
-      <span class="tag tag-heuristic">H2 — Match: system &amp; real world</span>
-      <span class="tag tag-error">Pre-selected 18% tip — anchoring bias</span>
-      <span class="tag tag-error">Emotionally loaded preset labels</span>
-      <span class="tag tag-error">Custom input shows subtotal, not grand total</span>
-      <span class="tag tag-error">No all-in total after tip confirmation</span>
-    </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must resist pre-selected nudges, interpret loaded labels, and manually perform mental arithmetic to determine true final charge — without any UI confirmation.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — user cannot verify the final charge before tapping "Place order"</span></div>
   </div>
 
   <p class="section-heading">Task 2 — Overall assessment</p>
@@ -898,23 +1031,30 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">The profile page loads a flat, heterogeneous list of 9+ items: shortcuts, a promotional banner, and features (Family and teens, Rides, Promotions, Send a gift, Help, Saved groups…). "Help" is the 5th item, buried among commercial and account-management features with no visual grouping or hierarchy to signal it as a support entry point.</p>
-    <div class="info-box">
-      <p class="info-label">Discoverability concern</p>
-      <p class="info-text">Most users in distress expect a dedicated "Support" or "Contact Us" path — not a generic profile page where Help competes equally with "Rides," "Promotions," and "Partner Rewards."</p>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">The profile page loads a flat, heterogeneous list of 9+ items: shortcuts, a promotional banner, and features (Family and teens, Rides, Promotions, Send a gift, Help, Saved groups…). "Help" is the 5th item, buried among commercial and account-management features with no visual grouping or hierarchy to signal it as a support entry point.</p>
+        <div class="info-box">
+          <p class="info-label">Discoverability concern</p>
+          <p class="info-text">Most users in distress expect a dedicated "Support" or "Contact Us" path — not a generic profile page where Help competes equally with "Rides," "Promotions," and "Partner Rewards."</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
+          <span class="tag tag-heuristic">H7 — Flexibility &amp; efficiency</span>
+          <span class="tag tag-error">Help buried at item 5 of 9</span>
+          <span class="tag tag-error">No visual grouping or priority hierarchy</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">The user must scan a flat, heterogeneous list of 9+ items. The presence of commercial items alongside support items increases visual noise for a stressed user.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Medium — user may navigate to "Orders" instead of "Help," expecting support to live there</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step1.jpg" alt="Task 3 Step 1 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="tags">
-      <span class="tag tag-heuristic">H4 — Consistency &amp; standards</span>
-      <span class="tag tag-heuristic">H7 — Flexibility &amp; efficiency</span>
-      <span class="tag tag-error">Help buried at item 5 of 9</span>
-      <span class="tag tag-error">No visual grouping or priority hierarchy</span>
-    </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">The user must scan a flat, heterogeneous list of 9+ items. The presence of commercial items alongside support items increases visual noise for a stressed user.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Medium — user may navigate to "Orders" instead of "Help," expecting support to live there</span></div>
   </div>
 
   <div class="step-card">
@@ -927,24 +1067,31 @@
       <span class="pill pill-cog">Cognitive load 3 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">An "Ongoing chat with Uber Support" banner creates confusion — it implies an active session may already exist. The "Restaurants" and "Stores" tabs force users to classify their issue before they can proceed. The "Last Order" shortcut is genuinely helpful. However, there is no visible "Talk to a person," "Call us," or "Live chat" option anywhere on this screen.</p>
-    <div class="info-box">
-      <p class="info-label">Human agent visibility</p>
-      <p class="info-text">Human escalation is architecturally invisible at the hub level. The entire page funnels users into the AI chatbot with no alternative path visible.</p>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">An "Ongoing chat with Uber Support" banner creates confusion — it implies an active session may already exist. The "Restaurants" and "Stores" tabs force users to classify their issue before they can proceed. The "Last Order" shortcut is genuinely helpful. However, there is no visible "Talk to a person," "Call us," or "Live chat" option anywhere on this screen.</p>
+        <div class="info-box">
+          <p class="info-label">Human agent visibility</p>
+          <p class="info-text">Human escalation is architecturally invisible at the hub level. The entire page funnels users into the AI chatbot with no alternative path visible.</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H6 — Recognition over recall</span>
+          <span class="tag tag-error">No human agent entry point visible</span>
+          <span class="tag tag-error">Ongoing chat banner creates false session confusion</span>
+          <span class="tag tag-error">Restaurants/Stores tab forces pre-classification</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Three sequential decisions before any support interaction begins: classify context (Restaurants vs. Stores), assess chat state, identify correct topic category.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — user with a non-order issue may select the wrong tab and receive irrelevant AI routing</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step2.jpg" alt="Task 3 Step 2 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H6 — Recognition over recall</span>
-      <span class="tag tag-error">No human agent entry point visible</span>
-      <span class="tag tag-error">Ongoing chat banner creates false session confusion</span>
-      <span class="tag tag-error">Restaurants/Stores tab forces pre-classification</span>
-    </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Three sequential decisions before any support interaction begins: classify context (Restaurants vs. Stores), assess chat state, identify correct topic category.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — user with a non-order issue may select the wrong tab and receive irrelevant AI routing</span></div>
   </div>
 
   <div class="step-card">
@@ -957,18 +1104,25 @@
       <span class="pill pill-cog">Cognitive load 2 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">Surfacing the last order directly on the Help hub is a strong UX decision — it removes the need to navigate to a separate order history screen. The order card shows restaurant name, date, and total at a glance. The issue category list uses plain, user-friendly language throughout.</p>
-    <div class="tags">
-      <span class="tag tag-ok">Good shortcut — last order surfaced directly</span>
-      <span class="tag tag-ok">Plain language category labels</span>
-      <span class="tag tag-error">No "Contact support directly" option in category list</span>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">Surfacing the last order directly on the Help hub is a strong UX decision — it removes the need to navigate to a separate order history screen. The order card shows restaurant name, date, and total at a glance. The issue category list uses plain, user-friendly language throughout.</p>
+        <div class="tags">
+          <span class="tag tag-ok">Good shortcut — last order surfaced directly</span>
+          <span class="tag tag-ok">Plain language category labels</span>
+          <span class="tag tag-error">No "Contact support directly" option in category list</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">Single decision. The category list is well-structured and recognisable, keeping cognitive effort low.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-ok">Minimal risk — order context is pre-filled</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step3.jpg" alt="Task 3 Step 3 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">Single decision. The category list is well-structured and recognisable, keeping cognitive effort low.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-ok">Minimal risk — order context is pre-filled</span></div>
   </div>
 
   <div class="step-card">
@@ -981,25 +1135,32 @@
       <span class="pill pill-cog">Cognitive load 3 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues</p>
-    <p class="section-text">Selecting a category opens the AI chatbot presenting near-duplicate issue chips — creating a disorienting sense of circular navigation. The chatbot header reads "Powered by AI" in 12px subdued text: the only indicator this is not a human. No free-text input box, no "Skip to agent" option, and no phone number exists — all paths are gated behind chip selection.</p>
-    <div class="info-box">
-      <p class="info-label">Chatbot containment architecture</p>
-      <p class="info-text">The system is designed to maximise automation and minimise human agent contact. Every available path routes through the AI decision tree. This is a deliberate support-suppression strategy, not an oversight.</p>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues</p>
+        <p class="section-text">Selecting a category opens the AI chatbot presenting near-duplicate issue chips — creating a disorienting sense of circular navigation. The chatbot header reads "Powered by AI" in 12px subdued text: the only indicator this is not a human. No free-text input box, no "Skip to agent" option, and no phone number exists — all paths are gated behind chip selection.</p>
+        <div class="info-box">
+          <p class="info-label">Chatbot containment architecture</p>
+          <p class="info-text">The system is designed to maximise automation and minimise human agent contact. Every available path routes through the AI decision tree. This is a deliberate support-suppression strategy, not an oversight.</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
+          <span class="tag tag-heuristic">H10 — Help &amp; documentation</span>
+          <span class="tag tag-error">Circular category duplication</span>
+          <span class="tag tag-error">"Powered by AI" disclosure buried in 12px subtext</span>
+          <span class="tag tag-error">No free-text input — human bypass impossible</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Cognitive load</p>
+        <p class="section-text">User must recognise the duplicate menu, understand they are inside an AI system from minimal signposting, and begin processing that direct human contact may not be possible.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">High — user may believe they are in a human chat session due to inadequate AI disclosure</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step4.jpg" alt="Task 3 Step 4 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
-      <span class="tag tag-heuristic">H10 — Help &amp; documentation</span>
-      <span class="tag tag-error">Circular category duplication</span>
-      <span class="tag tag-error">"Powered by AI" disclosure buried in 12px subtext</span>
-      <span class="tag tag-error">No free-text input — human bypass impossible</span>
-    </div>
-    <div class="divider"></div>
-    <p class="section-label">Cognitive load</p>
-    <p class="section-text">User must recognise the duplicate menu, understand they are inside an AI system from minimal signposting, and begin processing that direct human contact may not be possible.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">High — user may believe they are in a human chat session due to inadequate AI disclosure</span></div>
   </div>
 
   <div class="step-card flagged">
@@ -1015,36 +1176,43 @@
       <span class="pill pill-cog">Cognitive load 5 / 5</span>
     </div>
     <div class="divider"></div>
-    <p class="section-label">Friction points &amp; heuristic issues — deep analysis</p>
-    <p class="section-text">This step represents a complete architectural dead end. The task goal — reaching a human agent or finding a customer service phone number — is structurally unachievable within the app.</p>
-    <div class="spotlight">
-      <p class="spotlight-label">No phone number exists anywhere in the app</p>
-      <p class="spotlight-text">Uber Eats does not publish a customer service phone number in-app. A user whose primary goal is direct phone contact will exhaust every screen in this flow, find nothing, and be forced to leave the app entirely. This is a deliberate cost-reduction strategy — the app funnels 100% of support contacts through the chatbot.</p>
+    <div class="step-body">
+      <div class="step-text">
+        <p class="section-label">Friction points &amp; heuristic issues — deep analysis</p>
+        <p class="section-text">This step represents a complete architectural dead end. The task goal — reaching a human agent or finding a customer service phone number — is structurally unachievable within the app.</p>
+        <div class="spotlight">
+          <p class="spotlight-label">No phone number exists anywhere in the app</p>
+          <p class="spotlight-text">Uber Eats does not publish a customer service phone number in-app. A user whose primary goal is direct phone contact will exhaust every screen in this flow, find nothing, and be forced to leave the app entirely. This is a deliberate cost-reduction strategy — the app funnels 100% of support contacts through the chatbot.</p>
+        </div>
+        <div class="spotlight">
+          <p class="spotlight-label">No free-text input — "human" bypass is impossible</p>
+          <p class="spotlight-text">The chatbot presents only pre-defined chip options. The happy path step of typing "human" cannot be executed because no text box exists at this stage. Every chip routes deeper into automation, never toward a human agent.</p>
+        </div>
+        <div class="spotlight">
+          <p class="spotlight-label">"More options" is a dead-end branch</p>
+          <p class="spotlight-text">Tapping "More options" surfaces additional issue categories — not a "Talk to a person," "Call us," or "Request a callback" option. The resolution tree is finite and loops back to the same automation with no guaranteed human escalation path.</p>
+        </div>
+        <div class="tags">
+          <span class="tag tag-heuristic">H1 — Visibility of system status</span>
+          <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
+          <span class="tag tag-heuristic">H5 — Error prevention</span>
+          <span class="tag tag-heuristic">H9 — Help users recognise &amp; recover</span>
+          <span class="tag tag-heuristic">H10 — Help &amp; documentation</span>
+          <span class="tag tag-error">Phone number: architecturally absent</span>
+          <span class="tag tag-error">Human agent: no escalation path</span>
+          <span class="tag tag-error">Free-text input: unavailable</span>
+          <span class="tag tag-error">Exit path: user must leave app</span>
+        </div>
+        <div class="divider"></div>
+        <p class="section-label">Emotional design failure</p>
+        <p class="section-text">The support flow uses a cold, transactional chip-only interface with no empathy signalling — no acknowledgement of inconvenience, no "we're sorry this happened," no estimated resolution time. The emotional register is entirely mismatched to a user's distressed state.</p>
+        <p class="section-label">Error prevention</p>
+        <div class="tags"><span class="tag tag-error">Maximum — goal is architecturally impossible. No system feedback informs the user that this path does not exist</span></div>
+      </div>
+      <div class="step-image">
+        <img src="task3_step5.jpg" alt="Task 3 Step 5 Screenshot" onerror="this.style.display='none'">
+      </div>
     </div>
-    <div class="spotlight">
-      <p class="spotlight-label">No free-text input — "human" bypass is impossible</p>
-      <p class="spotlight-text">The chatbot presents only pre-defined chip options. The happy path step of typing "human" cannot be executed because no text box exists at this stage. Every chip routes deeper into automation, never toward a human agent.</p>
-    </div>
-    <div class="spotlight">
-      <p class="spotlight-label">"More options" is a dead-end branch</p>
-      <p class="spotlight-text">Tapping "More options" surfaces additional issue categories — not a "Talk to a person," "Call us," or "Request a callback" option. The resolution tree is finite and loops back to the same automation with no guaranteed human escalation path.</p>
-    </div>
-    <div class="tags">
-      <span class="tag tag-heuristic">H1 — Visibility of system status</span>
-      <span class="tag tag-heuristic">H3 — User control &amp; freedom</span>
-      <span class="tag tag-heuristic">H5 — Error prevention</span>
-      <span class="tag tag-heuristic">H9 — Help users recognise &amp; recover</span>
-      <span class="tag tag-heuristic">H10 — Help &amp; documentation</span>
-      <span class="tag tag-error">Phone number: architecturally absent</span>
-      <span class="tag tag-error">Human agent: no escalation path</span>
-      <span class="tag tag-error">Free-text input: unavailable</span>
-      <span class="tag tag-error">Exit path: user must leave app</span>
-    </div>
-    <div class="divider"></div>
-    <p class="section-label">Emotional design failure</p>
-    <p class="section-text">The support flow uses a cold, transactional chip-only interface with no empathy signalling — no acknowledgement of inconvenience, no "we're sorry this happened," no estimated resolution time. The emotional register is entirely mismatched to a user's distressed state.</p>
-    <p class="section-label">Error prevention</p>
-    <div class="tags"><span class="tag tag-error">Maximum — goal is architecturally impossible. No system feedback informs the user that this path does not exist</span></div>
   </div>
 
   <p class="section-heading">Task 3 — Overall assessment</p>
